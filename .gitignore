@@ -1,0 +1,36 @@
+.venv/
+__pycache__/
+.pytest_cache/
+tests/.temp/
+build/
+dist/
+models/*
+!models/README.md
+*.log
+
+# Generated distributions and local validation artifacts
+dist-*/
+build-*/
+release/
+*.spec
+docs/verification/
+docs/defense_setup/
+
+# Personal defense materials and one-off material extraction scripts
+examples/谷明毅开题答辩/
+scripts/create_defense_setup.py
+scripts/extract_defense_sources.py
+
+# Local configuration, recordings and credentials
+.env
+.env.*
+!.env.example
+settings.json
+history.json
+*.wav
+*.pcm
+*.key
+*.pem
+test_data/
+browser_test_data/
+exe_test_data/

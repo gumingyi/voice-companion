@@ -1,0 +1,2 @@
+# Optional UI integration check with installed Microsoft Edge; not a runtime dependency.
+playwright==1.51.0
