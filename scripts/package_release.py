@@ -4,6 +4,7 @@ import hashlib
 import importlib.metadata
 import json
 import shutil
+import subprocess
 import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -29,13 +30,9 @@ def main():
                     target = portable / "third_party_licenses" / package / item.name
                     target.parent.mkdir(parents=True, exist_ok=True)
                     shutil.copy2(path, target)
-    source_files = [ROOT / name for name in ("main.py", "Start.cmd", ".gitignore", "pytest.ini", "README.md", "requirements.txt", "requirements-dev.txt", "requirements-browser.txt", "requirements-lock.txt", "THIRD_PARTY.md")]
-    for directory in ("assistant_app", "scripts", "tests", "examples", "docs"):
-        for path in (ROOT / directory).rglob("*"):
-            if path.is_file() and not any(part in ("__pycache__", ".temp", "test_data", "browser_test_data", "exe_test_data") for part in path.parts):
-                if path.suffix in (".py", ".ps1", ".md", ".html", ".json", ".xml", ".png", ".svg"):
-                    source_files.append(path)
-    source_files.append(ROOT / "models" / "README.md")
+    # Use the reviewed Git index; ignored personal materials never enter source archives.
+    tracked = subprocess.check_output(["git", "ls-files", "-z"], cwd=ROOT).decode("utf-8").split("\0")
+    source_files = [ROOT / name for name in tracked if name and (ROOT / name).is_file()]
     archives = [(release / "VoiceCompanion-source-v0.5.zip", source_files, ROOT),
                 (release / "VoiceCompanion-Windows-x64-v0.5.zip", [p for p in portable.rglob("*") if p.is_file()], portable.parent)]
     results = []

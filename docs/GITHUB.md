@@ -27,7 +27,7 @@ git push -u origin main
 
 接收者使用 Windows 10/11 x64，下载便携版并完整解压，运行 VoiceCompanion/VoiceCompanion.exe。保留 _internal、models、scripts 目录。首次运行填写自己的模型 API Key，并选择音频设备。
 
-自动生成的 source 压缩包目前还包含本机个人答辩示例；不要直接把这个 source 压缩包作为通用发布附件。GitHub 根据已审核提交生成的 Source code 下载与本机 source 压缩包不同。
+源码压缩包通过 Git 跟踪文件清单生成，不包含被忽略的个人资料与本机验证附件。发布前仍须检查打包内容。
 
 ## 后续更新
 

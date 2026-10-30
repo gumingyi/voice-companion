@@ -17,7 +17,7 @@ docs/verification/
 docs/defense_setup/
 
 # Personal defense materials and one-off material extraction scripts
-examples/谷明毅开题答辩/
+examples/*/
 scripts/create_defense_setup.py
 scripts/extract_defense_sources.py
 

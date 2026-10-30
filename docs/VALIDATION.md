@@ -14,13 +14,13 @@
 | 自动与快捷键回答 | 实时转写结束后仅提交一次、尾句保留，以及快捷键路径通过 |
 | 有效Key调用DeepSeek | 真实官方接口和真实桌面显示通过 |
 | 模型切换和异常 | 配置、备用模型与错误处理测试通过；其他真实供应商未逐一验收 |
-| 模板创建切换 | Qt和组装预算测试通过，用户资料模板保留 |
+| 模板创建切换 | Qt和组装预算测试通过 |
 | 最小化采集 | 实机验证通过 |
 | 手机实时接收 | 本机真实局域网IP的移动尺寸浏览器配对/推送通过；实体手机仍待确认 |
 | 手机重连 | WebSocket和网页恢复通过；实体手机锁屏/断网待确认 |
 | 资源退出 | 音频、服务端口、异步任务及共享连接池关闭测试通过 |
 | 干净Windows环境 | 项目独立venv和便携exe通过，尚未在全新Windows机器验证 |
 
-verification/streaming_windows_result.json记录实际WASAPI与Vosk边听边识别：收音期间17次更新，结束前0次请求、结束后1次，本地HTTP测试服务约0.19秒收到请求；该接口是明确夹具，不代表DeepSeek速度。verification/mobile_lan_browser_result.json记录真实192.168.43.3地址绑定和本机移动页面测试，不能代替实体手机过防火墙验收。
+verification/streaming_windows_result.json记录实际WASAPI与Vosk边听边识别：收音期间17次更新，结束前0次请求、结束后1次，本地HTTP测试服务约0.19秒收到请求；该接口是明确夹具，不代表DeepSeek速度。verification/mobile_lan_browser_result.json记录实际局域网地址绑定和本机移动页面测试，不能代替实体手机过防火墙验收。
 
-当前exe验证见verification/exe_v05_result.json，包括UI图标资源检查。旧版程序包、旧构建目录及过时验证文件按用户要求删除，清单和回收大小见verification/cleanup_report.json。保留当前源码、中文模型、开发依赖、用户资料示例和本机设置/凭据；原开题报告、PPT、PDF未删除。
+当前便携exe自检包括界面图标资源、音频设备枚举、本地识别模型加载与Web服务启动。验证附件仅保留在开发环境，不随发布提供；可按README运行相应脚本复现检查。

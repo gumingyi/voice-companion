@@ -1,18 +1,18 @@
 # 声答 · 实时语音问答助手 0.5（Windows + 手机伴侣）
 
-用于经过允许的面试、学术答辩、会议与技术交流。默认不保存原始音频，不自动开始采集；参考答案需自行核实。当前版本为0.5，保留已有功能、快捷键与配置，更新桌面和手机界面。
+Windows 实时语音问答助手，支持本地中文转写、DeepSeek 流式回答、全局快捷键和局域网手机伴侣。适用于经过允许的面试、学术答辩、会议与技术交流。默认不保存原始音频，不自动开始采集；参考答案需自行核实。
 
 ## 界面更新
 
 灰白工作区、青绿色主按钮与统一线性图标；左侧编辑问题和浏览历史，右侧专注参考答案，底部集中收音控制。顶部直接切换模型、模板与资料，并显示收音/生成/异常状态。空白与等待状态有明确提示，设置页统一中文保存按钮与表单样式。手机端采用相同配色。
 
-界面使用原生Qt和缓存SVG图标，不增加网络素材或持续动画，保留首字即时与后续增量刷新。字体大小仍可调。检查覆盖1180×780、980×680、960×660与1440宽度；源码中docs/verification/ui保留预览和布局检查记录。详见docs/UI.md。
+界面使用原生Qt和缓存SVG图标，不增加网络素材或持续动画，保留首字即时与后续增量刷新。字体大小仍可调。检查覆盖1180×780、980×680、960×660与1440宽度；布局检查记录保留在开发环境，不随发布提供。详见docs/UI.md。
 
 ## 启动与升级
 
-退出托盘中的旧程序，解压release/VoiceCompanion-Windows-x64-v0.5.zip，运行VoiceCompanion/VoiceCompanion.exe。保留整个目录的_internal、models和scripts，不能只复制exe。便携版无需Python，不含用户Key。
+从本仓库的 Releases 下载 VoiceCompanion-Windows-x64-v0.5.zip。退出托盘中的旧程序，完整解压后运行 VoiceCompanion/VoiceCompanion.exe。保留整个目录的_internal、models和scripts，不能只复制exe。便携版无需Python，不含用户Key。
 
-源码运行：双击Start.cmd，首次使用会创建项目.venv、安装requirements.txt并下载约42MB Vosk中文模型。需要Windows 10/11 x64与Python 3.10 x64（推荐；源码支持3.10～3.12，暂不支持3.13）。不修改原有Python 3.8 PyTorch环境。
+源码运行：双击Start.cmd，首次使用会创建项目.venv、安装requirements.txt并下载约42MB Vosk中文模型。需要Windows 10/11 x64与Python 3.10 x64（推荐；源码支持3.10～3.12，暂不支持3.13）。建议在项目独立虚拟环境中安装依赖。
 
 ```powershell
 py -3.10 -m venv .venv
@@ -24,7 +24,7 @@ py -3.10 -m venv .venv
 也可指定解释器：
 
 ```powershell
-powershell -NoProfile -ExecutionPolicy Bypass -File scripts\start.ps1 -PythonPath 'D:\python3.10.0\python.exe'
+powershell -NoProfile -ExecutionPolicy Bypass -File scripts\start.ps1 -PythonPath 'C:\Python310\python.exe'
 ```
 
 新版本沿用本机配置、模板、背景资料及Windows凭据。首次运行会按需迁移设置，不包含或导出Key。
@@ -46,7 +46,7 @@ powershell -NoProfile -ExecutionPolicy Bypass -File scripts\start.ps1 -PythonPat
 - 请求状态显示准备、等待接口、已连接等待正文、服务端思考、重试或正文输出，并显示转写收尾、首字和总耗时。
 - 已被服务端接受的超时请求不自动重复发送；连接失败及明确429/5xx按配置有限重试，避免隐形等待与重复费用。
 
-本机当前真实简短测试：首字约0.72～1.33秒，最后一次桌面可见首字1.33秒、两句回答约1.92秒完成。没有复现用户报告的十多秒空白，不能据此承诺所有问题都在此时间内回答。服务排队、问题复杂度、上下文、网络及模型均影响速度，详见docs/PERFORMANCE.md。
+本机当前真实简短测试：首字约0.72～1.33秒，最后一次桌面可见首字1.33秒、两句回答约1.92秒完成。这些样本不能保证其他问题的响应时间。服务排队、问题复杂度、上下文、网络及模型均影响速度，详见docs/PERFORMANCE.md。
 
 ## 模型与Key
 
@@ -68,7 +68,7 @@ Key仅存Windows Credential Manager，服务名VoiceCompanion.API，按配置ID�
 
 可导入UTF-8 TXT/MD、DOCX、有文本层PDF，文件上限10MB；不支持扫描OCR和PPTX直接导入，也没有向量检索。导入后核对提取的文字。设置场景后在主界面勾选使用背景资料，再用预览最终提示词核对实际发送内容。
 
-examples/谷明毅开题答辩保留了根据用户材料整理的模板、背景和导入说明。资料中的计划与未验证结果不能写成已完成。修改设置前先停止音频设备。
+通用示例位于 examples/templates.json 和 examples/settings.example.json。个人资料由使用者在本机录入或导入，不随发布包分发。修改设置前先停止音频设备。
 
 ## 手机连接
 
